@@ -3,6 +3,27 @@ let express = require('express');
 let app = express();
 app.use('/', express.static('public'));
 
+app.use("/scripts", express.static(__dirname + '/public/javascripts'));
+
+app.use("/styles",  express.static(__dirname + '/public/stylesheets'));
+
+app.use("/images",  express.static(__dirname + '/public/images'));
+
+app.use("/sounds",  express.static(__dirname + '/public/sounds'));
+
+
+
+app.get('/dissonance', function(req, res){
+    res.sendFile('public/dissonance.html' , { root : __dirname});
+
+})
+
+app.get('/consonance', function(req, res){
+    res.sendFile('public/consonance.html' , { root : __dirname});
+
+})
+
+
 //Initialize the actual HTTP server
 let http = require('http');
 let server = http.createServer(app);
